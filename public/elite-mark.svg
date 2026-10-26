@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <radialGradient id="wine" cx="35%" cy="25%" r="80%">
+      <stop offset="0" stop-color="#9a2542" />
+      <stop offset="1" stop-color="#4f0a1e" />
+    </radialGradient>
+    <linearGradient id="gold" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#f3e1a8" />
+      <stop offset=".5" stop-color="#c19a3d" />
+      <stop offset="1" stop-color="#f3e1a8" />
+    </linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="29" fill="url(#wine)" stroke="url(#gold)" stroke-width="4" />
+  <path d="m32 8 2.2 6.8L41 17l-6.8 2.2L32 26l-2.2-6.8L23 17l6.8-2.2L32 8Z" fill="#ecd48c" />
+  <text x="32" y="46" fill="#ecd48c" font-family="Georgia,serif" font-size="20" font-weight="700" text-anchor="middle">EC</text>
+</svg>

@@ -1,0 +1,274 @@
+/* عناصر صفحة الدخول التفاعلية — كل الأصناف تبدأ بـ lt- حتى لا تتعارض مع CSS الموقع */
+
+.login-form-tech {
+  --lt-accent: var(--gold, #b8893b);
+  --lt-ok: #2f9e6e;
+  --lt-bad: #d64545;
+  --lt-line: rgba(128, 128, 128, 0.35);
+}
+
+/* ---------- الرأس: حالة الاتصال ---------- */
+.lt-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.lt-net {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.82rem;
+  opacity: 0.85;
+}
+
+.lt-net::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--lt-bad);
+}
+
+.lt-net[data-online='true']::before {
+  background: var(--lt-ok);
+}
+
+/* ---------- شريط المراحل ---------- */
+.lt-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 4px 0 6px;
+  padding: 0;
+  list-style: none;
+}
+
+.lt-step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+}
+
+/* الخط الواصل بين نقطتين متجاورتين */
+.lt-step:not(:first-child)::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  inset-inline-end: calc(50% + 17px);
+  width: calc(100% - 34px);
+  height: 2px;
+  border-radius: 2px;
+  background: var(--lt-line);
+  transition: background-color 0.3s ease;
+}
+
+.lt-step[data-state='done']::before,
+.lt-step[data-state='active']::before {
+  background: var(--lt-accent);
+}
+
+.lt-step-dot {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 2px solid var(--lt-line);
+  border-radius: 50%;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1;
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+.lt-step[data-state='active'] .lt-step-dot {
+  border-color: var(--lt-accent);
+  color: var(--lt-accent);
+}
+
+.lt-step[data-state='done'] .lt-step-dot {
+  border-color: var(--lt-accent);
+  background: var(--lt-accent);
+  color: #fff;
+}
+
+.lt-step[data-state='pending'] .lt-step-label {
+  opacity: 0.55;
+}
+
+/* ---------- الحقول ---------- */
+.lt-field {
+  position: relative;
+  display: block;
+}
+
+.lt-field input {
+  width: 100%;
+  box-sizing: border-box;
+  direction: ltr;
+  text-align: left;
+  padding-inline-end: 46px;
+  transition: border-color 0.2s ease;
+}
+
+.lt-field input:focus-visible {
+  outline: 2px solid var(--lt-accent);
+  outline-offset: 1px;
+}
+
+.lt-field[data-state='valid'] input {
+  border-color: var(--lt-ok);
+}
+
+.lt-field[data-state='invalid'] input {
+  border-color: var(--lt-bad);
+}
+
+.lt-field--code input {
+  padding-inline-end: 92px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  letter-spacing: 0.06em;
+}
+
+.lt-indicator {
+  position: absolute;
+  inset-inline-end: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.lt-field[data-state='valid'] .lt-indicator {
+  color: var(--lt-ok);
+}
+
+.lt-field[data-state='invalid'] .lt-indicator {
+  color: var(--lt-bad);
+}
+
+.lt-action {
+  position: absolute;
+  inset-inline-end: 7px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border: 1px solid var(--lt-line);
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 0.8rem;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.lt-action:hover,
+.lt-action:focus-visible {
+  border-color: var(--lt-accent);
+  color: var(--lt-accent);
+}
+
+.lt-action:focus-visible {
+  outline: 2px solid var(--lt-accent);
+  outline-offset: 2px;
+}
+
+.lt-hint {
+  margin: -6px 0 0;
+  color: var(--lt-bad);
+  font-size: 0.85rem;
+}
+
+/* ---------- التجميد المؤقت ---------- */
+.lt-cooldown {
+  display: grid;
+  gap: 8px;
+  font-size: 0.88rem;
+}
+
+.lt-cooldown i {
+  display: block;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--lt-bad);
+  width: calc(var(--lt-progress, 1) * 100%);
+  justify-self: start;
+  transition: width 1s linear;
+}
+
+/* ---------- زر الإرسال ---------- */
+.lt-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.lt-submit:disabled {
+  cursor: not-allowed;
+}
+
+.lt-submit[data-state='success'] {
+  background: var(--lt-ok);
+  border-color: var(--lt-ok);
+  color: #fff;
+  opacity: 1;
+}
+
+.lt-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid currentColor;
+  border-inline-end-color: transparent;
+  border-radius: 50%;
+  vertical-align: -2px;
+  animation: lt-spin 0.7s linear infinite;
+}
+
+/* ---------- اهتزاز عند الخطأ (يُعاد تشغيله باسمين مختلفين) ---------- */
+.lt-shake-a {
+  animation: lt-shake-a 0.35s ease;
+}
+
+.lt-shake-b {
+  animation: lt-shake-b 0.35s ease;
+}
+
+@keyframes lt-shake-a {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+@keyframes lt-shake-b {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+@keyframes lt-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lt-shake-a,
+  .lt-shake-b,
+  .lt-spinner {
+    animation: none;
+  }
+
+  .lt-step::before,
+  .lt-step-dot,
+  .lt-cooldown i {
+    transition: none;
+  }
+}
+

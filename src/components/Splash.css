@@ -1,0 +1,150 @@
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  direction: ltr;
+  overflow: hidden;
+  opacity: 1;
+  transition: opacity 0.6s ease;
+}
+.splash--hide {
+  opacity: 0;
+  pointer-events: none;
+}
+.splash-title {
+  text-align: center;
+  animation: splash-title-in 1s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+.splash-title h1 {
+  margin: 0;
+  color: #fff;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: clamp(2.4rem, 11vw, 3.6rem);
+  font-weight: 200;
+  letter-spacing: 0.3em;
+  margin-right: -0.3em;
+}
+.splash-title p {
+  margin: 6px -0.6em 0 0;
+  color: #d4af37;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: clamp(0.8rem, 3.6vw, 1rem);
+  font-weight: 500;
+  letter-spacing: 0.6em;
+}
+.splash-divider {
+  width: 140px;
+  height: 1px;
+  margin: 22px 0 46px;
+  background: #d4af37;
+  opacity: 0.7;
+  transform-origin: center;
+  animation: splash-divider-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.7s both;
+}
+.splash-book {
+  position: relative;
+  width: 230px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 800px;
+  animation: splash-book-in 1.4s cubic-bezier(0.22, 1, 0.36, 1) 1.4s both;
+}
+.splash-glow {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.16) 0%, rgba(212, 175, 55, 0) 65%);
+  animation: splash-glow 3s ease-in-out 2s infinite alternate both;
+}
+.splash-cover {
+  position: relative;
+  width: 220px;
+  height: 140px;
+  padding: 7px;
+  box-sizing: border-box;
+  background: #1b1b1b;
+  border: 1px solid rgba(212, 175, 55, 0.55);
+  border-radius: 8px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
+}
+.splash-pages {
+  display: flex;
+  height: 100%;
+}
+.splash-page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 14px 12px;
+  background: linear-gradient(90deg, #f4efe6, #e9e2d3);
+}
+.splash-page--left {
+  border-radius: 4px 0 0 4px;
+  transform-origin: right center;
+  transform: rotateY(6deg);
+  background: linear-gradient(90deg, #f4efe6 70%, #ddd5c2);
+}
+.splash-page--right {
+  border-radius: 0 4px 4px 0;
+  transform-origin: left center;
+  transform: rotateY(-6deg);
+  background: linear-gradient(270deg, #f4efe6 70%, #ddd5c2);
+}
+.splash-spine {
+  width: 3px;
+  background: #8c7a4b;
+}
+.splash-line {
+  display: block;
+  height: 3px;
+  border-radius: 2px;
+  background: #b9ae96;
+  transform-origin: left center;
+  animation: splash-line-in 0.45s ease-out calc(2.9s + var(--i) * 0.09s) both;
+}
+.splash-ribbon {
+  position: absolute;
+  bottom: -14px;
+  right: 52px;
+  width: 8px;
+  height: 26px;
+  background: #d4af37;
+  border-radius: 0 0 2px 2px;
+}
+@keyframes splash-title-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes splash-divider-in {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes splash-book-in {
+  from { opacity: 0; transform: scale(0.88); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes splash-line-in {
+  from { opacity: 0; transform: scaleX(0); }
+  to { opacity: 1; transform: scaleX(1); }
+}
+@keyframes splash-glow {
+  from { opacity: 0.5; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1.05); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .splash *,
+  .splash {
+    animation-duration: 0.01s !important;
+    animation-delay: 0s !important;
+  }
+}

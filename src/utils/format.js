@@ -1,0 +1,1 @@
+export function formatCount(value) { return new Intl.NumberFormat('ar').format(value) }
